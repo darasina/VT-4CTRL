@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>VT-4CTRL: MMMIDIIn クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">VT-4CTRL
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">公開型</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="class_m_m_m_i_d_i_in-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle"><div class="title">MMMIDIIn クラス</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:a183314107e5cbf228164a07d4723909e"><td class="memItemLeft" align="right" valign="top"><a id="a183314107e5cbf228164a07d4723909e" name="a183314107e5cbf228164a07d4723909e"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>RetCode</b> { <b>OK</b>
+, <b>Error</b>
+ }</td></tr>
+<tr class="separator:a183314107e5cbf228164a07d4723909e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b387bcb98da51584d62cd929c994356"><td class="memItemLeft" align="right" valign="top"><a id="a4b387bcb98da51584d62cd929c994356" name="a4b387bcb98da51584d62cd929c994356"></a>
+typedef std::function&lt; void(void *instance, UINT wMsg, DWORD dwParam1, DWORD dwParam2)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Callback</b></td></tr>
+<tr class="separator:a4b387bcb98da51584d62cd929c994356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:afcce614a4bc1bea48e722e24467e1fb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_m_m_i_d_i_in.html#afcce614a4bc1bea48e722e24467e1fb5">MMMIDIIn</a> (UINT uDeviceID)</td></tr>
+<tr class="separator:afcce614a4bc1bea48e722e24467e1fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c64cdd5b36c22c09a3e5e3d279b9700"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_m_m_i_d_i_in.html#a5c64cdd5b36c22c09a3e5e3d279b9700">GetDeviceInfo</a> (UINT uDeviceID)</td></tr>
+<tr class="separator:a5c64cdd5b36c22c09a3e5e3d279b9700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa012e3927cdd2c1ce7430629d885ee96"><td class="memItemLeft" align="right" valign="top">RetCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_m_m_i_d_i_in.html#aa012e3927cdd2c1ce7430629d885ee96">Open</a> ()</td></tr>
+<tr class="separator:aa012e3927cdd2c1ce7430629d885ee96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c45c3710f3f26ea575f1bf07183b1f6"><td class="memItemLeft" align="right" valign="top"><a id="a9c45c3710f3f26ea575f1bf07183b1f6" name="a9c45c3710f3f26ea575f1bf07183b1f6"></a>
+RetCode&#160;</td><td class="memItemRight" valign="bottom"><b>Reset</b> ()</td></tr>
+<tr class="separator:a9c45c3710f3f26ea575f1bf07183b1f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62343327839aebc762953d27466d2519"><td class="memItemLeft" align="right" valign="top"><a id="a62343327839aebc762953d27466d2519" name="a62343327839aebc762953d27466d2519"></a>
+RetCode&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="separator:a62343327839aebc762953d27466d2519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a976dc25eb230020c9fa74551725e50ef"><td class="memItemLeft" align="right" valign="top"><a id="a976dc25eb230020c9fa74551725e50ef" name="a976dc25eb230020c9fa74551725e50ef"></a>
+RetCode&#160;</td><td class="memItemRight" valign="bottom"><b>Stop</b> ()</td></tr>
+<tr class="separator:a976dc25eb230020c9fa74551725e50ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a646c9e898ef30955f64e5d04936585bf"><td class="memItemLeft" align="right" valign="top">RetCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_m_m_i_d_i_in.html#a646c9e898ef30955f64e5d04936585bf">Close</a> ()</td></tr>
+<tr class="separator:a646c9e898ef30955f64e5d04936585bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e670b258c1f77dee17447fc2e28f772"><td class="memItemLeft" align="right" valign="top">MMRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_m_m_i_d_i_in.html#a0e670b258c1f77dee17447fc2e28f772">GetRecentResult</a> ()</td></tr>
+<tr class="separator:a0e670b258c1f77dee17447fc2e28f772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7377d86f1c6ac31d3ed96c7490a8b2b7"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_m_m_i_d_i_in.html#a7377d86f1c6ac31d3ed96c7490a8b2b7">GetRecentError</a> ()</td></tr>
+<tr class="separator:a7377d86f1c6ac31d3ed96c7490a8b2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55aa983d97e687a1080e52e152da4342"><td class="memItemLeft" align="right" valign="top"><a id="a55aa983d97e687a1080e52e152da4342" name="a55aa983d97e687a1080e52e152da4342"></a>
+WORD&#160;</td><td class="memItemRight" valign="bottom"><b>GetManufacturerID</b> ()</td></tr>
+<tr class="separator:a55aa983d97e687a1080e52e152da4342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cdf29ecfbd4b5b72a1bbd6b364746ad"><td class="memItemLeft" align="right" valign="top"><a id="a5cdf29ecfbd4b5b72a1bbd6b364746ad" name="a5cdf29ecfbd4b5b72a1bbd6b364746ad"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>GetProductName</b> ()</td></tr>
+<tr class="separator:a5cdf29ecfbd4b5b72a1bbd6b364746ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add828bc44877865190b6d5588bd7e218"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_m_m_i_d_i_in.html#add828bc44877865190b6d5588bd7e218">isError</a> ()</td></tr>
+<tr class="separator:add828bc44877865190b6d5588bd7e218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace0859dd527324fb9de03afe83685dc7"><td class="memItemLeft" align="right" valign="top"><a id="ace0859dd527324fb9de03afe83685dc7" name="ace0859dd527324fb9de03afe83685dc7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOpened</b> ()</td></tr>
+<tr class="separator:ace0859dd527324fb9de03afe83685dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad22631795c16830cb9c97320f2ec1401"><td class="memItemLeft" align="right" valign="top"><a id="ad22631795c16830cb9c97320f2ec1401" name="ad22631795c16830cb9c97320f2ec1401"></a>
+UINT&#160;</td><td class="memItemRight" valign="bottom"><b>GetID</b> ()</td></tr>
+<tr class="separator:ad22631795c16830cb9c97320f2ec1401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a164e0c1fd1c4ef1d34326968972101e9"><td class="memItemLeft" align="right" valign="top"><a id="a164e0c1fd1c4ef1d34326968972101e9" name="a164e0c1fd1c4ef1d34326968972101e9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMessageCallback</b> (void *instance, Callback func)</td></tr>
+<tr class="separator:a164e0c1fd1c4ef1d34326968972101e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5887ad5ecd57c55a34da564572bb58e5"><td class="memItemLeft" align="right" valign="top"><a id="a5887ad5ecd57c55a34da564572bb58e5" name="a5887ad5ecd57c55a34da564572bb58e5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>UnsetMessageCallback</b> ()</td></tr>
+<tr class="separator:a5887ad5ecd57c55a34da564572bb58e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a8e62e1b93ea27c8d7e24171689e0cdb8"><td class="memItemLeft" align="right" valign="top">static UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_m_m_m_i_d_i_in.html#a8e62e1b93ea27c8d7e24171689e0cdb8">GetNumDevs</a> ()</td></tr>
+<tr class="separator:a8e62e1b93ea27c8d7e24171689e0cdb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="afcce614a4bc1bea48e722e24467e1fb5" name="afcce614a4bc1bea48e722e24467e1fb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcce614a4bc1bea48e722e24467e1fb5">&#9670;&#160;</a></span>MMMIDIIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MMMIDIIn::MMMIDIIn </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>uDeviceID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>デバイスIDを指定してオブジェクト初期化 </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a646c9e898ef30955f64e5d04936585bf" name="a646c9e898ef30955f64e5d04936585bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a646c9e898ef30955f64e5d04936585bf">&#9670;&#160;</a></span>Close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MMMIDIIn::RetCode MMMIDIIn::Close </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>デバイスを閉じる、バッファやらの始末もしてから。 </p>
+
+</div>
+</div>
+<a id="a5c64cdd5b36c22c09a3e5e3d279b9700" name="a5c64cdd5b36c22c09a3e5e3d279b9700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c64cdd5b36c22c09a3e5e3d279b9700">&#9670;&#160;</a></span>GetDeviceInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MMMIDIIn::GetDeviceInfo </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>uDeviceID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>デバイス情報を取得してオブジェクトに格納する </p>
+
+</div>
+</div>
+<a id="a8e62e1b93ea27c8d7e24171689e0cdb8" name="a8e62e1b93ea27c8d7e24171689e0cdb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e62e1b93ea27c8d7e24171689e0cdb8">&#9670;&#160;</a></span>GetNumDevs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int MMMIDIIn::GetNumDevs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>MIDI入力デバイス数を取得する</p>
+<p>THRU接続などしてたらでてこないと思われる </p>
+
+</div>
+</div>
+<a id="a7377d86f1c6ac31d3ed96c7490a8b2b7" name="a7377d86f1c6ac31d3ed96c7490a8b2b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7377d86f1c6ac31d3ed96c7490a8b2b7">&#9670;&#160;</a></span>GetRecentError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * MMMIDIIn::GetRecentError </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>直前の実行結果のエラー文字列を返す </p>
+
+</div>
+</div>
+<a id="a0e670b258c1f77dee17447fc2e28f772" name="a0e670b258c1f77dee17447fc2e28f772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e670b258c1f77dee17447fc2e28f772">&#9670;&#160;</a></span>GetRecentResult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MMRESULT MMMIDIIn::GetRecentResult </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>直前の実行結果コードを取得する </p>
+
+</div>
+</div>
+<a id="add828bc44877865190b6d5588bd7e218" name="add828bc44877865190b6d5588bd7e218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add828bc44877865190b6d5588bd7e218">&#9670;&#160;</a></span>isError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MMMIDIIn::isError </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>直前のAPI実行結果がエラーならtrueを返す</p>
+<p>直前の実行結果がエラーならtrue </p>
+
+</div>
+</div>
+<a id="aa012e3927cdd2c1ce7430629d885ee96" name="aa012e3927cdd2c1ce7430629d885ee96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa012e3927cdd2c1ce7430629d885ee96">&#9670;&#160;</a></span>Open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MMMIDIIn::RetCode MMMIDIIn::Open </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>デバイスを握って、バッファ設定、入力開始する </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>midi/<a class="el" href="_m_m_m_i_d_i_in_8h_source.html">MMMIDIIn.h</a></li>
+<li>midi/MMMIDIIn.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>

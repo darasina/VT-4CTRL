@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{061EFDD9-EE7F-4A7A-8F6B-B18CFCCE5FF1}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MIDITESTTests.cbproj">
+            <Dependencies>vt-4\VT-4CTRL.cbproj;midi\MMSYSMIDI.cbproj</Dependencies>
+        </Projects>
+        <Projects Include="midi\MMSYSMIDI.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="vt-4\VT-4CTRL.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="VT4Control\VT4Control.cbproj">
+            <Dependencies>midi\MMSYSMIDI.cbproj;vt-4\VT-4CTRL.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MIDITESTTests" DependsOnTargets="VT-4CTRL;MMSYSMIDI">
+        <MSBuild Projects="MIDITESTTests.cbproj"/>
+    </Target>
+    <Target Name="MIDITESTTests:Clean" DependsOnTargets="VT-4CTRL:Clean;MMSYSMIDI:Clean">
+        <MSBuild Projects="MIDITESTTests.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MIDITESTTests:Make" DependsOnTargets="VT-4CTRL:Make;MMSYSMIDI:Make">
+        <MSBuild Projects="MIDITESTTests.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="MMSYSMIDI">
+        <MSBuild Projects="midi\MMSYSMIDI.cbproj"/>
+    </Target>
+    <Target Name="MMSYSMIDI:Clean">
+        <MSBuild Projects="midi\MMSYSMIDI.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MMSYSMIDI:Make">
+        <MSBuild Projects="midi\MMSYSMIDI.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="VT-4CTRL">
+        <MSBuild Projects="vt-4\VT-4CTRL.cbproj"/>
+    </Target>
+    <Target Name="VT-4CTRL:Clean">
+        <MSBuild Projects="vt-4\VT-4CTRL.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VT-4CTRL:Make">
+        <MSBuild Projects="vt-4\VT-4CTRL.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="VT4Control" DependsOnTargets="MMSYSMIDI;VT-4CTRL">
+        <MSBuild Projects="VT4Control\VT4Control.cbproj"/>
+    </Target>
+    <Target Name="VT4Control:Clean" DependsOnTargets="MMSYSMIDI:Clean;VT-4CTRL:Clean">
+        <MSBuild Projects="VT4Control\VT4Control.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VT4Control:Make" DependsOnTargets="MMSYSMIDI:Make;VT-4CTRL:Make">
+        <MSBuild Projects="VT4Control\VT4Control.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MIDITESTTests;MMSYSMIDI;VT-4CTRL;VT4Control"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MIDITESTTests:Clean;MMSYSMIDI:Clean;VT-4CTRL:Clean;VT4Control:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MIDITESTTests:Make;MMSYSMIDI:Make;VT-4CTRL:Make;VT4Control:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

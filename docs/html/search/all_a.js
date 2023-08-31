@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['savepatch_0',['SavePatch',['../class_v_t4.html#aed7ef86dc1ff1bb5603b7850322d88f6',1,'VT4']]],
+  ['searchvt4devid_1',['SearchVT4DevID',['../class_v_t4.html#a7c586172530d265b816929f5dfed499e',1,'VT4']]],
+  ['sendmidich_2',['SendMIDICh',['../class_v_t4.html#ae41db8d0d5be211ff41d6d7246d6839d',1,'VT4']]],
+  ['sendpatchname0_5f3_3',['SendPatchName0_3',['../class_v_t4.html#a3a675f14e6793c8f9bf505438de0594f',1,'VT4']]],
+  ['sendpitch_4',['SendPitch',['../class_v_t4.html#a734256fa0361c17a90643847561a39f4',1,'VT4']]],
+  ['sendpitchsysex_5',['SendPitchSysEx',['../class_v_t4.html#a19c43cd8855e65a43798a92b6a108eb9',1,'VT4']]],
+  ['sendrobot_6',['SendRobot',['../class_v_t4.html#ac97ec8161d8311d2940b9f24778be0f9',1,'VT4']]],
+  ['sendsysex_7',['SendSysEx',['../class_v_t4.html#a125c58d7ad8e2cb87562e29c3bdce858',1,'VT4']]],
+  ['sendtempbalance_8',['SendTempBalance',['../class_v_t4.html#a5f1ecb721d620579c49770653c8d0b4a',1,'VT4']]],
+  ['sendtempformant_9',['SendTempFormant',['../class_v_t4.html#ad5d70f1c1ab908874a6ce175c9d37936',1,'VT4']]],
+  ['sendtempharmony_10',['SendTempHarmony',['../class_v_t4.html#a7211b6ca9d1753c89b640c85354a7e3c',1,'VT4']]],
+  ['sendtempmegaphone_11',['SendTempMegaphone',['../class_v_t4.html#aba53086f4aa2a85920c21eb5c123efca',1,'VT4']]],
+  ['sendtemppitch_12',['SendTempPitch',['../class_v_t4.html#a598bb01fef734a51368d862aee644ccf',1,'VT4']]],
+  ['sendtempreverb_13',['SendTempReverb',['../class_v_t4.html#a7d39948886f489c24424b4391b21ae97',1,'VT4']]],
+  ['sendtemprobot_14',['SendTempRobot',['../class_v_t4.html#adb86ea3c952f4707f3da0b497fc41636',1,'VT4']]],
+  ['sendtempvocoder_15',['SendTempVocoder',['../class_v_t4.html#a2ffb2d8a95c4e567503d544ae6bec311',1,'VT4']]],
+  ['setincallback_16',['SetInCallback',['../class_v_t4.html#a130dae7ca053c75d9f30eb4d88ff1b3d',1,'VT4']]],
+  ['shortmsg_17',['ShortMsg',['../class_m_m_m_i_d_i_out.html#ac366b6c13347afb75aa65312691b8c4d',1,'MMMIDIOut']]],
+  ['systemdata_18',['SystemData',['../struct_v_t4_1_1_system_data.html',1,'VT4']]]
+];
