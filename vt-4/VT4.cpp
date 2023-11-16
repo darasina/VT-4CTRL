@@ -40,7 +40,8 @@ VT4::RetCode VT4::SearchVT4DevID() {
     char* pn = in->GetProductName();
     std::string pname = pn;
     OutputDebugStringA(pname.c_str());
-    if (pname == "VT-4") {
+    // プリフィックスがついたりすることがあるので部分一致で検索
+    if (pname.find("VT-4") != std::string::npos) {
       inDevID = devID;
       inVT4Found = true;
       break;
@@ -53,8 +54,8 @@ VT4::RetCode VT4::SearchVT4DevID() {
   for (UINT devID = 0; devID < devNum; devID++) {
     out = std::make_unique<MMMIDIOut>(devID);
     std::string pname = out->GetProductName();
-    std::cout << pname << std::endl;
-    if (pname == "VT-4") {
+    OutputDebugStringA(pname.c_str());
+    if (pname.find("VT-4") != std::string::npos) {
       outDevID = devID;
       outVT4Found = true;
       break;
@@ -529,13 +530,13 @@ int VT4::parseDT1Patch(int patchNo, unsigned int startParamAddrs, char* data,
                        unsigned int offset) {
   PatchData* patch = nullptr;
   if (patchNo == -1) {
-	patch = &(params.temporaryPatch);
-	patch->_updated = true;
+    patch = &(params.temporaryPatch);
+    patch->_updated = true;
   } else {
-	if (patchNo > 7) {
-	  return -1;
+    if (patchNo > 7) {
+      return -1;
     }
-	patch = &(params.userPatch[patchNo]);
+    patch = &(params.userPatch[patchNo]);
     patch->_updated = true;
   }
   assert(patch);
@@ -1039,10 +1040,9 @@ VT4::RetCode VT4::SendTempRobotVariation(unsigned char value) {
     ch = 0;
   }
   if (ch > 0x7f) {
-    ch= 0x7f;
+    ch = 0x7f;
   }
-  MMMIDIOut::RetCode r =
-	  out->ControlChange(ch, CTRLCHG_ROBOT_VARIATION, value);
+  MMMIDIOut::RetCode r = out->ControlChange(ch, CTRLCHG_ROBOT_VARIATION, value);
   if (r != MMMIDIOut::RetCode::OK) {
     return RetCode::Error;
   }
@@ -1058,7 +1058,7 @@ VT4::RetCode VT4::SendTempMegaphoneVariation(unsigned char value) {
     ch--;
   }
   MMMIDIOut::RetCode r =
-	  out->ControlChange(ch, CTRLCHG_MEGAPHONE_VARIATION, value);
+      out->ControlChange(ch, CTRLCHG_MEGAPHONE_VARIATION, value);
   if (r != MMMIDIOut::RetCode::OK) {
     return RetCode::Error;
   }
@@ -1074,7 +1074,7 @@ VT4::RetCode VT4::SendTempVocoderVariation(unsigned char value) {
     ch--;
   }
   MMMIDIOut::RetCode r =
-	  out->ControlChange(ch, CTRLCHG_VOCODER_VARIATION, value);
+      out->ControlChange(ch, CTRLCHG_VOCODER_VARIATION, value);
   if (r != MMMIDIOut::RetCode::OK) {
     return RetCode::Error;
   }
@@ -1090,7 +1090,7 @@ VT4::RetCode VT4::SendTempHarmonyVariation(unsigned char value) {
     ch--;
   }
   MMMIDIOut::RetCode r =
-	  out->ControlChange(ch, CTRLCHG_HARMONY_VARIATION, value);
+      out->ControlChange(ch, CTRLCHG_HARMONY_VARIATION, value);
   if (r != MMMIDIOut::RetCode::OK) {
     return RetCode::Error;
   }
@@ -1106,7 +1106,7 @@ VT4::RetCode VT4::SendTempReverbVariation(unsigned char value) {
     ch--;
   }
   MMMIDIOut::RetCode r =
-	  out->ControlChange(ch, CTRLCHG_REVERB_VARIATION, value);
+      out->ControlChange(ch, CTRLCHG_REVERB_VARIATION, value);
   if (r != MMMIDIOut::RetCode::OK) {
     return RetCode::Error;
   }

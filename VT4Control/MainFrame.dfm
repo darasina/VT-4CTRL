@@ -3,8 +3,8 @@ object VT4ControlFrame: TVT4ControlFrame
   Top = 0
   Hint = 'NAME'
   Caption = 'VT-4 Control'
-  ClientHeight = 597
-  ClientWidth = 496
+  ClientHeight = 596
+  ClientWidth = 492
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

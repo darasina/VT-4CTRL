@@ -11,7 +11,7 @@
 #include <mutex>
 #include <thread>
 
-#include "HexStr2Bytes.h"
+//#include "HexStr2Bytes.h"
 #include "vt-4/vt4.h"
 
 class TTestVT4 : public TTestCase {

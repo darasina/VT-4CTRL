@@ -10,7 +10,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="vt-4\VT-4CTRL.cbproj">
-            <Dependencies/>
+            <Dependencies>midi\MMSYSMIDI.cbproj</Dependencies>
         </Projects>
         <Projects Include="VT4Control\VT4Control.cbproj">
             <Dependencies>midi\MMSYSMIDI.cbproj;vt-4\VT-4CTRL.cbproj</Dependencies>
@@ -41,13 +41,13 @@
     <Target Name="MMSYSMIDI:Make">
         <MSBuild Projects="midi\MMSYSMIDI.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="VT-4CTRL">
+    <Target Name="VT-4CTRL" DependsOnTargets="MMSYSMIDI">
         <MSBuild Projects="vt-4\VT-4CTRL.cbproj"/>
     </Target>
-    <Target Name="VT-4CTRL:Clean">
+    <Target Name="VT-4CTRL:Clean" DependsOnTargets="MMSYSMIDI:Clean">
         <MSBuild Projects="vt-4\VT-4CTRL.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="VT-4CTRL:Make">
+    <Target Name="VT-4CTRL:Make" DependsOnTargets="MMSYSMIDI:Make">
         <MSBuild Projects="vt-4\VT-4CTRL.cbproj" Targets="Make"/>
     </Target>
     <Target Name="VT4Control" DependsOnTargets="MMSYSMIDI;VT-4CTRL">

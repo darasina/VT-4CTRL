@@ -27,7 +27,11 @@ __fastcall TVT4ControlFrame::TVT4ControlFrame(TComponent* Owner)
 
   vt4 = std::make_unique<VT4>();
   // USB接続のVT4を探す
-  vt4->SearchVT4DevID();
+  ret = vt4->SearchVT4DevID();
+  if (ret != VT4::RetCode::OK) {
+    // みつからなかった
+    return;
+  }
   InMIDIList->AddItem(vt4->GetInDevName(), nullptr);
   InMIDIList->SelectAll();
   OutMIDIList->AddItem(vt4->GetOutDevName(), nullptr);
