@@ -3,8 +3,8 @@ object VT4ControlFrame: TVT4ControlFrame
   Top = 0
   Hint = 'NAME'
   Caption = 'VT-4 Control'
-  ClientHeight = 596
-  ClientWidth = 492
+  ClientHeight = 592
+  ClientWidth = 476
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -40,7 +40,7 @@ object VT4ControlFrame: TVT4ControlFrame
     Height = 15
     Caption = 'SEND'
   end
-  object Label1: TLabel
+  object SaveLockLabel: TLabel
     Left = 347
     Top = 178
     Width = 59
@@ -554,6 +554,8 @@ object VT4ControlFrame: TVT4ControlFrame
           Width = 75
           Height = 26
           Hint = 'NAME'
+          Alignment = taCenter
+          BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -564,6 +566,7 @@ object VT4ControlFrame: TVT4ControlFrame
           MaxLength = 8
           ParentFont = False
           ParentShowHint = False
+          ReadOnly = True
           ShowHint = True
           TabOrder = 1
           Text = '12345678'
@@ -601,6 +604,8 @@ object VT4ControlFrame: TVT4ControlFrame
           Width = 75
           Height = 26
           Hint = 'NAME'
+          Alignment = taCenter
+          BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -611,6 +616,7 @@ object VT4ControlFrame: TVT4ControlFrame
           MaxLength = 8
           ParentFont = False
           ParentShowHint = False
+          ReadOnly = True
           ShowHint = True
           TabOrder = 1
           Text = '12345678'
@@ -648,6 +654,8 @@ object VT4ControlFrame: TVT4ControlFrame
           Width = 75
           Height = 26
           Hint = 'NAME'
+          Alignment = taCenter
+          BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -658,6 +666,7 @@ object VT4ControlFrame: TVT4ControlFrame
           MaxLength = 8
           ParentFont = False
           ParentShowHint = False
+          ReadOnly = True
           ShowHint = True
           TabOrder = 1
           Text = '12345678'
@@ -674,8 +683,8 @@ object VT4ControlFrame: TVT4ControlFrame
         end
       end
       object Patch4Group: TGroupBox
-        Left = 254
-        Top = -1
+        Left = 256
+        Top = 3
         Width = 81
         Height = 109
         Caption = '#4'
@@ -691,10 +700,12 @@ object VT4ControlFrame: TVT4ControlFrame
         end
         object Patch4NameEdit: TEdit
           Left = 3
-          Top = 20
+          Top = 17
           Width = 75
           Height = 26
           Hint = 'NAME'
+          Alignment = taCenter
+          BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -705,6 +716,7 @@ object VT4ControlFrame: TVT4ControlFrame
           MaxLength = 8
           ParentFont = False
           ParentShowHint = False
+          ReadOnly = True
           ShowHint = True
           TabOrder = 1
           Text = '12345678'
@@ -746,6 +758,8 @@ object VT4ControlFrame: TVT4ControlFrame
           Width = 75
           Height = 26
           Hint = 'NAME'
+          Alignment = taCenter
+          BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -756,6 +770,7 @@ object VT4ControlFrame: TVT4ControlFrame
           MaxLength = 8
           ParentFont = False
           ParentShowHint = False
+          ReadOnly = True
           ShowHint = True
           TabOrder = 1
           Text = '12345678'
@@ -793,6 +808,8 @@ object VT4ControlFrame: TVT4ControlFrame
           Width = 75
           Height = 26
           Hint = 'NAME'
+          Alignment = taCenter
+          BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -803,6 +820,7 @@ object VT4ControlFrame: TVT4ControlFrame
           MaxLength = 8
           ParentFont = False
           ParentShowHint = False
+          ReadOnly = True
           ShowHint = True
           TabOrder = 1
           Text = '12345678'
@@ -840,6 +858,8 @@ object VT4ControlFrame: TVT4ControlFrame
           Width = 75
           Height = 26
           Hint = 'NAME'
+          Alignment = taCenter
+          BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -850,6 +870,7 @@ object VT4ControlFrame: TVT4ControlFrame
           MaxLength = 8
           ParentFont = False
           ParentShowHint = False
+          ReadOnly = True
           ShowHint = True
           TabOrder = 1
           Text = '12345678'
@@ -887,6 +908,8 @@ object VT4ControlFrame: TVT4ControlFrame
           Width = 75
           Height = 26
           Hint = 'NAME'
+          Alignment = taCenter
+          BorderStyle = bsNone
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -897,6 +920,7 @@ object VT4ControlFrame: TVT4ControlFrame
           MaxLength = 8
           ParentFont = False
           ParentShowHint = False
+          ReadOnly = True
           ShowHint = True
           TabOrder = 1
           Text = '12345678'

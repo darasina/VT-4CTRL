@@ -817,6 +817,47 @@ VT4::RetCode VT4::SendPitchSysEx(int patchNo, unsigned char value) {
   data[1] = value & 0x00ff;
   return sendDT1(adrs, (const char*)data, sizeof data);
 }
+/**
+ * パッチ名を送信する
+ */
+VT4::RetCode VT4::SendPatchName(int patchNo, char* name0_7) {
+  // パラメータアドレス
+  char adrs[] = {0, 0, 0, 0x16};
+  char data[16];
+  // パラメータチェック
+  if (patchNo < -1) {
+    return RetCode::Error;
+  }
+  if (patchNo > 7) {
+    return RetCode::Error;
+  }
+  if (patchNo == -1) {
+    // テンポラリパッチ
+    adrs[0] = 0x10;
+  } else {
+    // ユーザパッチ
+    adrs[0] = 0x11;
+    adrs[1] = patchNo;
+  }
+  // 2バイトの下位4ビットに分ける
+  data[0] = (name0_7[0] & 0b11110000) >> 4;
+  data[1] = name0_7[0] & 0b00001111;
+  data[2] = (name0_7[1] & 0b11110000) >> 4;
+  data[3] = name0_7[1] & 0b00001111;
+  data[4] = (name0_7[2] & 0b11110000) >> 4;
+  data[5] = name0_7[2] & 0b00001111;
+  data[6] = (name0_7[3] & 0b11110000) >> 4;
+  data[7] = name0_7[3] & 0b00001111;
+  data[8] = (name0_7[4] & 0b11110000) >> 4;
+  data[9] = name0_7[4] & 0b00001111;
+  data[10] = (name0_7[5] & 0b11110000) >> 4;
+  data[11] = name0_7[5] & 0b00001111;
+  data[12] = (name0_7[6] & 0b11110000) >> 4;
+  data[13] = name0_7[6] & 0b00001111;
+  data[14] = (name0_7[7] & 0b11110000) >> 4;
+  data[15] = name0_7[7] & 0b00001111;
+  return sendDT1(adrs, (const char*)data, sizeof data);
+}
 
 /**
  * パッチ名の前半分を送信する
@@ -849,6 +890,40 @@ VT4::RetCode VT4::SendPatchName0_3(int patchNo, char* name0_3) {
   data[5] = name0_3[2] & 0b00001111;
   data[6] = (name0_3[3] & 0b11110000) >> 4;
   data[7] = name0_3[3] & 0b00001111;
+  return sendDT1(adrs, (const char*)data, sizeof data);
+}
+
+/**
+ * パッチ名の後ろ半分を送信する
+ */
+VT4::RetCode VT4::SendPatchName4_7(int patchNo, char* name4_7) {
+  // パラメータアドレス
+  char adrs[] = {0, 0, 0, 0x1E};
+  char data[8];
+  // パラメータチェック
+  if (patchNo < -1) {
+    return RetCode::Error;
+  }
+  if (patchNo > 7) {
+    return RetCode::Error;
+  }
+  if (patchNo == -1) {
+    // テンポラリパッチ
+    adrs[0] = 0x10;
+  } else {
+    // ユーザパッチ
+    adrs[0] = 0x11;
+    adrs[1] = patchNo;
+  }
+  // 2バイトの下位4ビットに分ける
+  data[0] = (name4_7[0] & 0b11110000) >> 4;
+  data[1] = name4_7[0] & 0b00001111;
+  data[2] = (name4_7[1] & 0b11110000) >> 4;
+  data[3] = name4_7[1] & 0b00001111;
+  data[4] = (name4_7[2] & 0b11110000) >> 4;
+  data[5] = name4_7[2] & 0b00001111;
+  data[6] = (name4_7[3] & 0b11110000) >> 4;
+  data[7] = name4_7[3] & 0b00001111;
   return sendDT1(adrs, (const char*)data, sizeof data);
 }
 

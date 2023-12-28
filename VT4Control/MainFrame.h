@@ -99,7 +99,7 @@ class TVT4ControlFrame : public TForm {
   TEdit *Patch7NameEdit;
   TButton *Patch7SaveButton;
   TToggleSwitch *SaveLockSwitch;
-  TLabel *Label1;
+    TLabel *SaveLockLabel;
   TTrackBar *VolumeBar;
   TTrackBar *MicSensBar;
   TNumberBox *VolumeNumber;
@@ -161,8 +161,16 @@ class TVT4ControlFrame : public TForm {
  private:  // ユーザー宣言
   // clang-format off
   // SYSEX送信コード
-  enum { REQ_TEMP_PATCH = 0,
-		 REQ_SEND_PITCH,
+  enum { REQ_SEND_PITCH = 0,
+		 REQ_SAVE_PATCH_1,
+		 REQ_SAVE_PATCH_2,
+		 REQ_SAVE_PATCH_3,
+		 REQ_SAVE_PATCH_4,
+		 REQ_SAVE_PATCH_5,
+		 REQ_SAVE_PATCH_6,
+		 REQ_SAVE_PATCH_7,
+		 REQ_SAVE_PATCH_8,
+		 REQ_TEMP_PATCH,
 		 REQ_USER_PATCH_1,
 		 REQ_USER_PATCH_2,
 		 REQ_USER_PATCH_3,
@@ -171,7 +179,6 @@ class TVT4ControlFrame : public TForm {
 		 REQ_USER_PATCH_6,
 		 REQ_USER_PATCH_7,
 		 REQ_USER_PATCH_8,
-		 REQ_SAVE_PATCH_8,
 		 REQ_SEND_USER_PATCH_1_NAME,
 		 REQ_MAX
 	   };
@@ -180,8 +187,10 @@ class TVT4ControlFrame : public TForm {
   float midiOutputInterval = 500;
   void requestSYSEX(int requestNo);
   bool sysexSendRequest[REQ_MAX];
-  bool receiveNow = false;
-  bool waitRQDT = false;
+  bool receiveNow = false;       // なんだっけ（デバイスからデータ受信中？）
+  bool waitRQDT = false;         // データ転送メッセージの応答待ち中
+  ULONGLONG msWaitRQDT = 1000;   // LONGメッセージの待ち受け時間
+  ULONGLONG startMsWaitRQDT = 0; // 前回のメッセージ待ち受け開始時間
   VT4::Parameters vt4prms;
   static void midiInCallback(void *ptr, UINT wMsg, DWORD dwParam1,
                              DWORD dwParam2) {
@@ -191,6 +200,7 @@ class TVT4ControlFrame : public TForm {
   void getTemporaryPatchFromVT4();
   void midiShortMsg(DWORD dwMidiMessage, DWORD dwTimestamp);
   void packTemporaryPatch();
+  void startWaitRQDT();
 
  public:  // ユーザー宣言
   std::unique_ptr<VT4> vt4;

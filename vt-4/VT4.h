@@ -199,6 +199,7 @@ class VT4 {
   RetCode SendRobot(int patchNo, unsigned char value);
   RetCode SendPatchName0_3(int patchNo, char* name0_3);
   RetCode SendPatchName4_7(int patchNo, char* name4_7);
+  RetCode SendPatchName(int patchNo, char* name0_7);
   RetCode SendTempPitch(unsigned char value);
   RetCode SendPitch(int patchNo, unsigned char value);
   RetCode SendPitchSysEx(int patchNo, unsigned char value);

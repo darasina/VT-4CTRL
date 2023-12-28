@@ -108,7 +108,12 @@ void __fastcall TVT4ControlFrame::Timer1Timer(TObject* Sender) {
   }
   // 前回のリクエストの応答待ちならなにもしない
   if (waitRQDT) {
-    return;
+    if ((GetTickCount64() - startMsWaitRQDT) > msWaitRQDT) {
+      // 待ち受け時間超過したら
+      waitRQDT = false;                      // 待ち受け解除
+    } else {
+      return;
+    }
   }
 
   // リクエストを優先度順にみて1つ実行する
@@ -118,40 +123,68 @@ void __fastcall TVT4ControlFrame::Timer1Timer(TObject* Sender) {
       sysexSendRequest[i] = false;  // リクエスト処理済み
       switch (i) {
         case REQ_TEMP_PATCH:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestTemporaryPatch();
           break;
         case REQ_USER_PATCH_1:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestUserPatch(VT4::PRM_PATCHNO_1);
           break;
         case REQ_USER_PATCH_2:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestUserPatch(VT4::PRM_PATCHNO_2);
           break;
         case REQ_USER_PATCH_3:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestUserPatch(VT4::PRM_PATCHNO_3);
           break;
         case REQ_USER_PATCH_4:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestUserPatch(VT4::PRM_PATCHNO_4);
           break;
         case REQ_USER_PATCH_5:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestUserPatch(VT4::PRM_PATCHNO_5);
           break;
         case REQ_USER_PATCH_6:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestUserPatch(VT4::PRM_PATCHNO_6);
           break;
         case REQ_USER_PATCH_7:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestUserPatch(VT4::PRM_PATCHNO_7);
           break;
         case REQ_USER_PATCH_8:
-          waitRQDT = true;
+          startWaitRQDT();
           vt4->RequestUserPatch(VT4::PRM_PATCHNO_8);
+          break;
+        case REQ_SAVE_PATCH_1:
+          vt4->SavePatch(VT4::PRM_PATCHNO_1,
+                         vt4prms.userPatch[VT4::PRM_PATCHNO_1]);
+          break;
+        case REQ_SAVE_PATCH_2:
+          vt4->SavePatch(VT4::PRM_PATCHNO_2,
+                         vt4prms.userPatch[VT4::PRM_PATCHNO_2]);
+          break;
+        case REQ_SAVE_PATCH_3:
+          vt4->SavePatch(VT4::PRM_PATCHNO_3,
+                         vt4prms.userPatch[VT4::PRM_PATCHNO_3]);
+          break;
+        case REQ_SAVE_PATCH_4:
+          vt4->SavePatch(VT4::PRM_PATCHNO_4,
+                         vt4prms.userPatch[VT4::PRM_PATCHNO_4]);
+          break;
+        case REQ_SAVE_PATCH_5:
+          vt4->SavePatch(VT4::PRM_PATCHNO_5,
+                         vt4prms.userPatch[VT4::PRM_PATCHNO_5]);
+          break;
+        case REQ_SAVE_PATCH_6:
+          vt4->SavePatch(VT4::PRM_PATCHNO_6,
+                         vt4prms.userPatch[VT4::PRM_PATCHNO_6]);
+          break;
+        case REQ_SAVE_PATCH_7:
+          vt4->SavePatch(VT4::PRM_PATCHNO_7,
+                         vt4prms.userPatch[VT4::PRM_PATCHNO_7]);
           break;
         case REQ_SAVE_PATCH_8:
           vt4->SavePatch(VT4::PRM_PATCHNO_8,
@@ -160,12 +193,12 @@ void __fastcall TVT4ControlFrame::Timer1Timer(TObject* Sender) {
         case REQ_SEND_PITCH:
           if (SendSwitch->State == tssOn) {
             // 送信ONなら
-            waitRQDT = true;
             vt4->SendPitch(VT4::PRM_PATCHNO_TEMPORARY, PitchBar->Position);
           }
           break;
         case REQ_SEND_USER_PATCH_1_NAME:
           if (SendSwitch->State == tssOn) {
+            // パッチ名を送信する
             char pn[8] = {0, 0, 0, 0, 0, 0, 0, 0};
             size_t len = 8;
             if (Patch1NameEdit->Text.Length() < 8) {
@@ -175,8 +208,7 @@ void __fastcall TVT4ControlFrame::Timer1Timer(TObject* Sender) {
               pn[i] = Patch1NameEdit->Text.c_str()[i];
             }
 
-            waitRQDT = true;
-            vt4->SendPatchName0_3(VT4::PRM_PATCHNO_1, pn);
+            vt4->SendPatchName(VT4::PRM_PATCHNO_1, pn);
           }
           break;
         default:
@@ -188,6 +220,14 @@ void __fastcall TVT4ControlFrame::Timer1Timer(TObject* Sender) {
     }
   }
   // 一つもリクエストがなかったらタイマーを停止してもいい気がする
+}
+
+/**
+ * LONGメッセージの待ち受け開始準備
+ */
+void TVT4ControlFrame::startWaitRQDT() {
+  startMsWaitRQDT = GetTickCount64();
+  waitRQDT = true;
 }
 
 void TVT4ControlFrame::callback(UINT wMsg, DWORD dwParam1, DWORD dwParam2) {
@@ -292,6 +332,19 @@ void TVT4ControlFrame::packTemporaryPatch() {
   temp.vocoderVariation = VocoderVarNumber->Value - 1;
   temp.harmonyVariation = HarmonyVarNumber->Value - 1;
   temp.reverbVariation = ReverbVarNumber->Value - 1;
+
+  // パッチ名
+  size_t len = 8;
+  if (TempPatchNameEdit->Text.Length() < 8) {
+    len = TempPatchNameEdit->Text.Length();
+  }
+  for (int i = 0; i < 8; i++) {
+    if (i < len) {
+      temp.name[i] = TempPatchNameEdit->Text.c_str()[i];
+    } else {
+      temp.name[i] = 0;
+    }
+  }
 }
 //---------------------------------------------------------------------------
 
@@ -331,9 +384,9 @@ void __fastcall TVT4ControlFrame::RobotSwitchClick(TObject* Sender) {
 //---------------------------------------------------------------------------
 
 void __fastcall TVT4ControlFrame::Patch1NameEditExit(TObject* Sender) {
-  if (SendSwitch->State == tssOn && !receiveNow) {
-    requestSYSEX(REQ_SEND_USER_PATCH_1_NAME);
-  }
+//  if (SendSwitch->State == tssOn && !receiveNow) {
+//    requestSYSEX(REQ_SEND_USER_PATCH_1_NAME);
+//  }
 }
 //---------------------------------------------------------------------------
 
@@ -516,49 +569,73 @@ void __fastcall TVT4ControlFrame::Patch8LoadButtonClick(TObject* Sender) {
 
 void __fastcall TVT4ControlFrame::Patch1SaveButtonClick(TObject* Sender) {
   packTemporaryPatch();
-  vt4->SavePatch(VT4::PRM_PATCHNO_1, vt4prms.temporaryPatch);
+  VT4::PatchData &user = vt4prms.userPatch[VT4::PRM_PATCHNO_1];
+  user = vt4prms.temporaryPatch;
+  Patch1NameEdit->Text = user.name;
+  requestSYSEX(REQ_SAVE_PATCH_1);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TVT4ControlFrame::Patch2SaveButtonClick(TObject* Sender) {
   packTemporaryPatch();
-  vt4->SavePatch(VT4::PRM_PATCHNO_2, vt4prms.temporaryPatch);
+  VT4::PatchData &user = vt4prms.userPatch[VT4::PRM_PATCHNO_2];
+  user = vt4prms.temporaryPatch;
+  Patch2NameEdit->Text = user.name;
+  requestSYSEX(REQ_SAVE_PATCH_2);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TVT4ControlFrame::Patch3SaveButtonClick(TObject* Sender) {
   packTemporaryPatch();
-  vt4->SavePatch(VT4::PRM_PATCHNO_3, vt4prms.temporaryPatch);
+  VT4::PatchData &user = vt4prms.userPatch[VT4::PRM_PATCHNO_3];
+  user = vt4prms.temporaryPatch;
+  Patch3NameEdit->Text = user.name;
+  requestSYSEX(REQ_SAVE_PATCH_3);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TVT4ControlFrame::Patch4SaveButtonClick(TObject* Sender) {
   packTemporaryPatch();
-  vt4->SavePatch(VT4::PRM_PATCHNO_4, vt4prms.temporaryPatch);
+  VT4::PatchData &user = vt4prms.userPatch[VT4::PRM_PATCHNO_4];
+  user = vt4prms.temporaryPatch;
+  Patch4NameEdit->Text = user.name;
+  requestSYSEX(REQ_SAVE_PATCH_4);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TVT4ControlFrame::Patch5SaveButtonClick(TObject* Sender) {
   packTemporaryPatch();
-  vt4->SavePatch(VT4::PRM_PATCHNO_5, vt4prms.temporaryPatch);
+  VT4::PatchData &user = vt4prms.userPatch[VT4::PRM_PATCHNO_5];
+  user = vt4prms.temporaryPatch;
+  Patch5NameEdit->Text = user.name;
+  requestSYSEX(REQ_SAVE_PATCH_5);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TVT4ControlFrame::Patch6SaveButtonClick(TObject* Sender) {
   packTemporaryPatch();
-  vt4->SavePatch(VT4::PRM_PATCHNO_6, vt4prms.temporaryPatch);
+  VT4::PatchData &user = vt4prms.userPatch[VT4::PRM_PATCHNO_6];
+  user = vt4prms.temporaryPatch;
+  Patch6NameEdit->Text = user.name;
+  requestSYSEX(REQ_SAVE_PATCH_6);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TVT4ControlFrame::Patch7SaveButtonClick(TObject* Sender) {
   packTemporaryPatch();
-  vt4->SavePatch(VT4::PRM_PATCHNO_7, vt4prms.temporaryPatch);
+  VT4::PatchData &user = vt4prms.userPatch[VT4::PRM_PATCHNO_7];
+  user = vt4prms.temporaryPatch;
+  Patch7NameEdit->Text = user.name;
+  requestSYSEX(REQ_SAVE_PATCH_7);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TVT4ControlFrame::Patch8SaveButtonClick(TObject* Sender) {
   packTemporaryPatch();
-  vt4->SavePatch(VT4::PRM_PATCHNO_8, vt4prms.temporaryPatch);
+  VT4::PatchData &user = vt4prms.userPatch[VT4::PRM_PATCHNO_8];
+  user = vt4prms.temporaryPatch;
+  Patch8NameEdit->Text = user.name;
+  requestSYSEX(REQ_SAVE_PATCH_8);
 }
 //---------------------------------------------------------------------------
 
@@ -632,4 +709,5 @@ void __fastcall TVT4ControlFrame::ReverbVarNumberChangeValue(TObject* Sender) {
   }
 }
 //---------------------------------------------------------------------------
+
 

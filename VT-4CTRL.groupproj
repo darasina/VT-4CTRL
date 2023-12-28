@@ -4,7 +4,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Projects Include="MIDITESTTests.cbproj">
-            <Dependencies>vt-4\VT-4CTRL.cbproj;midi\MMSYSMIDI.cbproj</Dependencies>
+            <Dependencies>midi\MMSYSMIDI.cbproj;vt-4\VT-4CTRL.cbproj</Dependencies>
         </Projects>
         <Projects Include="midi\MMSYSMIDI.cbproj">
             <Dependencies/>
@@ -23,13 +23,13 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="MIDITESTTests" DependsOnTargets="VT-4CTRL;MMSYSMIDI">
+    <Target Name="MIDITESTTests" DependsOnTargets="MMSYSMIDI;VT-4CTRL">
         <MSBuild Projects="MIDITESTTests.cbproj"/>
     </Target>
-    <Target Name="MIDITESTTests:Clean" DependsOnTargets="VT-4CTRL:Clean;MMSYSMIDI:Clean">
+    <Target Name="MIDITESTTests:Clean" DependsOnTargets="MMSYSMIDI:Clean;VT-4CTRL:Clean">
         <MSBuild Projects="MIDITESTTests.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="MIDITESTTests:Make" DependsOnTargets="VT-4CTRL:Make;MMSYSMIDI:Make">
+    <Target Name="MIDITESTTests:Make" DependsOnTargets="MMSYSMIDI:Make;VT-4CTRL:Make">
         <MSBuild Projects="MIDITESTTests.cbproj" Targets="Make"/>
     </Target>
     <Target Name="MMSYSMIDI">

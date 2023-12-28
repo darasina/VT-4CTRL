@@ -358,22 +358,48 @@ void __fastcall TTestVT4::TestSendPatchName() {
   vt4->Open();
   // 初期値を取得
   for (unsigned int i = 0; i < 8; i++) {
-    Check(vt4->RequestUserPatch(i) == VT4::RetCode::OK);
+    vt4->RequestUserPatch(i);
   }
+  Sleep(40);
   vt4->GetTemporaryPatch();
   VT4::Parameters backprms;
   backprms = vt4->GetParameters();
   char pn[] = {'1', '2', '3', '4'};
+  char pn2[] = {'5', '6', '7', '8'};
   // 設定値を更新
-  vt4->SendPatchName0_3(0, pn);
+  Sleep(40);
+  vt4->SendPatchName0_3(VT4::PRM_PATCHNO_1, pn);
+  Sleep(40);
+  vt4->SendPatchName4_7(VT4::PRM_PATCHNO_1, pn2);
+  Sleep(40);
   // 更新後の設定値を取得して確認
+  for (unsigned int i = 0; i < 8; i++) {
+    vt4->RequestUserPatch(i);
+  }
+  Sleep(40);
   vt4->GetTemporaryPatch();
   VT4::Parameters prms = vt4->GetParameters();
-  std::string newpn = prms.userPatch[0].name;
-  Check(newpn == "1234");
+  std::string newpn = prms.userPatch[VT4::PRM_PATCHNO_1].name;
+  Check(newpn == "12345678");
+
+  char pn3[] = {'a','b','c','d','e','f','g','h'};
+  // 設定値を更新
+  Sleep(40);
+  vt4->SendPatchName(VT4::PRM_PATCHNO_1, pn3);
+  // 更新後の設定値を取得して確認
+  for (unsigned int i = 0; i < 8; i++) {
+    vt4->RequestUserPatch(i);
+  }
+  Sleep(40);
+  vt4->GetTemporaryPatch();
+  prms = vt4->GetParameters();
+  std::string newpn2 = prms.userPatch[VT4::PRM_PATCHNO_1].name;
+  Check(newpn2 == "abcdefgh", "newpn2");
 
   // 初期値に戻す
-  Check(vt4->SendPatchName0_3(0, backprms.userPatch[0].name) ==
+  Check(vt4->SendPatchName4_7(VT4::PRM_PATCHNO_1, backprms.userPatch[VT4::PRM_PATCHNO_1].name) ==
+        VT4::RetCode::OK);
+  Check(vt4->SendPatchName4_7(VT4::PRM_PATCHNO_1, (backprms.userPatch[VT4::PRM_PATCHNO_1].name)+4) ==
         VT4::RetCode::OK);
   // 後処理
   vt4->Close();
@@ -466,6 +492,7 @@ void __fastcall TTestVT4::TestSavePatch() {
   ret = vt4->SavePatch(VT4::PRM_PATCHNO_8, new2Patch);
   Check(ret == VT4::RetCode::OK, "Save Patch failed.");
   Sleep(400);
+  // パッチ読み込み
   ret = vt4->RequestUserPatch(VT4::PRM_PATCHNO_8);
   Sleep(400);
   ret = vt4->GetTemporaryPatch();
